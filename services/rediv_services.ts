@@ -31,17 +31,6 @@ export async function TokenRequest(data: SignInRequestData) {
   }
 }
 
-export async function logout() {
-  const response = await redivAPI.post(`/logout`)
-
-  const { code, message } = response.data
-
-  return {
-    code,
-    message,
-  }
-}
-
 export async function registerUser(user: any) {
   const response = await redivAPI.post('/users', {
     name: user.name,
@@ -57,30 +46,6 @@ export async function registerUser(user: any) {
     code,
     message,
   }
-}
-
-export function checkToken() {
-  redivAPI
-    .post('logged_user')
-    .then((res) => {
-      var valid = false
-
-      const { user } = res.data
-
-      if (user) valid = true
-      return {
-        message: 'Token válido',
-        code: 'SUCCESS',
-        valid: true,
-      }
-    })
-    .catch((error) => {
-      return {
-        message: error,
-        code: 'SERVER ERROR',
-        valid: false,
-      }
-    })
 }
 
 export async function getClient(filter: string) {

@@ -62,30 +62,6 @@ export async function registerUser(user: any) {
   }
 }
 
-export function checkToken() {
-  did4allAPI
-    .post('logged_user')
-    .then((res) => {
-      var valid = false
-
-      const { user } = res.data
-
-      if (user) valid = true
-      return {
-        message: 'Token válido',
-        code: 'SUCCESS',
-        valid: true,
-      }
-    })
-    .catch((error) => {
-      return {
-        message: error,
-        code: 'SERVER ERROR',
-        valid: false,
-      }
-    })
-}
-
 export async function getClient() {
   const response = await did4allAPI.get('api/person/single?filter=1437NPZ0PY8BW')
 
